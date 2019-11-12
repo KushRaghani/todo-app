@@ -8,3 +8,8 @@ body {
   color: #000;
   background: #ffffff;
 }
+
+.main-app {
+  display: flex;
+  height: 100%;
+}
