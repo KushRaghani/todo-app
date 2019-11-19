@@ -16,12 +16,7 @@ const App = () => {
             <SideBar />
           </Grid.Unit>
           <Grid.Unit size={{ tablet: 3 / 4 }}>
-            <ToDo
-              todos={[
-                { id: 1, todoText: "Shortlist features for MVP" },
-                { id: 2, todoText: "todo 2" }
-              ]}
-            />
+            <ToDo />
           </Grid.Unit>
         </Grid>
       </Content>
