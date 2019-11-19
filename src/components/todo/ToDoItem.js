@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import PropType from "prop-types";
+import { withTheme } from "styled-components";
+import Checkbox from "./../common/Checkbox";
+import Group from "../common/Group";
+import TrashIcon from "../common/icons/TrashIcon";
 
-const ToDoItem = props => {
+const ToDoItem = ({ todoText, ...props }) => {
+  const [showDeleteBtn, setShowDeleteBtn] = useState(false);
+  const [checkToDoItem, setCheckToDoItem] = useState(false);
+  const handleCheckboxChange = event => {
+    setCheckToDoItem(event.target.checked);
+  };
   return (
-    <React.Fragment>
-      <input type="checkbox" />
-      <span>{props.todoText}</span>
-      <button type="button">Delete</button>
-      <br />
-    </React.Fragment>
+    <Group
+      onMouseEnter={() => {
+        setShowDeleteBtn(true);
+      }}
+      onMouseLeave={() => {
+        setShowDeleteBtn(false);
+      }}
+      style={{ justifyContent: "space-between" }}
+    >
+      <Checkbox
+        checked={checkToDoItem}
+        onChange={handleCheckboxChange}
+        checkBoxLabel={todoText}
+      />
+      {showDeleteBtn && <TrashIcon fill={props.theme.primary} />}
+    </Group>
   );
 };
 
@@ -16,4 +35,4 @@ ToDoItem.propTypes = {
   todoText: PropType.string
 };
 
-export default ToDoItem;
+export default withTheme(ToDoItem);
