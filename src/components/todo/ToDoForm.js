@@ -24,6 +24,9 @@ const ToDoForm = ({ onAddingTodo, theme }) => {
   const [updateInput, setUpdateInput] = useState("");
 
   const addTodo = () => {
+    if (updateInput === "") {
+      return;
+    }
     onAddingTodo({
       description: updateInput,
       isCompleted: false,
@@ -43,6 +46,12 @@ const ToDoForm = ({ onAddingTodo, theme }) => {
             onChange={e => {
               setUpdateInput(e.target.value);
             }}
+            onKeyPress={e => {
+              if (e.which === 13) {
+                addTodo();
+              }
+            }}
+            autoFocus
           />
           <button onClick={addTodo}>Add</button>
         </>
