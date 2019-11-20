@@ -7,6 +7,10 @@ const ToDoLabel = styled.label`
   margin-left: 10px;
 `;
 
+const AddInput = styled.input`
+  margin: 0 10px;
+`;
+
 const ToDoFormContainer = styled.div`
   height: 100px;
   background-color: ${props => props.theme.lightGrey};
@@ -33,7 +37,7 @@ const ToDoForm = ({ onAddingTodo, theme }) => {
       <AddIcon onClick={() => setShowInput(!showInput)} fill={theme.primary} />
       {showInput && (
         <>
-          <input
+          <AddInput
             placeholder="Add a to-do"
             value={updateInput}
             onChange={e => {
