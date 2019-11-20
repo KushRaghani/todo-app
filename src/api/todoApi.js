@@ -25,7 +25,17 @@ export function deleteTodo(todoId) {
 }
 
 export function getTodosCategory() {
-    return fetch(todosCategoryBaseUrl)
+  return fetch(todosCategoryBaseUrl)
     .then(handleResponse)
-    .catch(handleError); 
+    .catch(handleError);
+}
+
+export function saveActiveTodoCategory(category) {
+  return fetch(todosCategoryBaseUrl + category.id, {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(category)
+  })
+    .then(handleResponse)
+    .catch(handleError);
 }

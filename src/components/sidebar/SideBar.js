@@ -15,16 +15,16 @@ const Aside = styled.aside`
 `;
 
 const UserProfile = styled("section")`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-weight: 600;
-    & > img {
-        border-radius: 50%;
-        margin-right: 10px;
-        width:50px;
-    }
-    padding:1em .5em 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+  & > img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 50px;
+  }
+  padding: 1em 0.5em 2em;
 `;
 
 const SideBar = props => {
@@ -36,12 +36,16 @@ const SideBar = props => {
   return (
     <Aside>
       <UserProfile>
-        <img src={profileImg} alt={'profile image'} />
-        <span>{'Guglielmo Marconi'}</span>
+        <img src={profileImg} alt={"profile image"} />
+        <span>{"Guglielmo Marconi"}</span>
       </UserProfile>
       {props.todoCategory.map(i => {
         return (
-          <Group key={i.id} className={i.active ? 'active': ''}>
+          <Group
+            key={i.id}
+            className={i.active ? "active" : ""}
+            onClick={() => props.actions.toggleTodosCategory(i)}
+          >
             <ListIcon fill={props.theme.darkGrey} /> <span>{i.name}</span>
           </Group>
         );
@@ -67,6 +71,10 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadTodosCategory: bindActionCreators(
         todoCategoryActions.loadTodosCategory,
+        dispatch
+      ),
+      toggleTodosCategory: bindActionCreators(
+        todoCategoryActions.toggleTodosCategory,
         dispatch
       )
     }

@@ -10,6 +10,10 @@ export function loadTodoActiveCategoryActionsSuccess(todoActiveCategory) {
   return { type: types.LOAD_TODO_ACTIVE_CATEGORY_SUCCESS, todoActiveCategory };
 }
 
+export function saveTodoCategoryActionsSuccess(todoCategory) {
+  return { type: types.TOGGLE_TODO_CATEGORY_SUCCESS, todoCategory };
+}
+
 export function loadTodosCategory() {
   return function(dispatch) {
     //dispatch(beginApiCall());
@@ -27,4 +31,10 @@ export function loadTodosCategory() {
         throw error;
       });
   };
+}
+
+export function toggleTodosCategory(todoCategory) {
+  return function(dispatch) {
+    dispatch(loadTodoActiveCategoryActionsSuccess(todoCategory));
+  }
 }
