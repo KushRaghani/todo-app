@@ -41,8 +41,9 @@ const StyledCheckbox = styled.div`
     props.checked ? props.theme.checkboxColor : props.theme.white};
   border-radius: 3px;
   transition: all 150ms;
-  border: 1px solid ${props =>
-    props.checked ? props.theme.checkboxColor : props.theme.darkGrey};
+  border: 1px solid
+    ${props =>
+      props.checked ? props.theme.checkboxColor : props.theme.darkGrey};
   ${Icon} {
     visibility: ${props => (props.checked ? "visible" : "hidden")};
   }

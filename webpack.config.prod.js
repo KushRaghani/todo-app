@@ -25,8 +25,8 @@ module.exports = {
     }),
 
     new webpack.DefinePlugin({
-      // React is built in prod mode.
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      "process.env.API_URL": JSON.stringify("http://localhost:3000")
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",

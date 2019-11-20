@@ -1,7 +1,6 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import styled, { withTheme } from "styled-components";
-
 import headerImg from "../../assets/images/todo-background.jpg";
 
 const Header = styled.div`
@@ -24,15 +23,20 @@ const Header = styled.div`
   }
 `;
 
-const ToDoHeader = () => {
+const ToDoHeader = ({todoCategoryName, timestamp}) => {
   return (
     <React.Fragment>
       <Header>
-        <h1>Team To-Do List</h1>
-        <p>{new Date().toISOString()}</p>
+        <h1>{todoCategoryName}</h1>
+        <p>{timestamp}</p>
       </Header>
     </React.Fragment>
   );
+};
+
+ToDoHeader.propTypes = {
+  todoCategoryName: PropTypes.string.isRequired,
+  timestamp: PropTypes.string.isRequired
 };
 
 export default withTheme(ToDoHeader);

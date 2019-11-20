@@ -11,7 +11,6 @@ const App = () => {
         <Grid>
           <Grid.Unit
             size={{ tablet: 1 / 4 }}
-            visible={{ mobile: false, tablet: true }}
           >
             <SideBar />
           </Grid.Unit>

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "run-p start:dev start:api",
     "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 8081",
-    "start:api":"json-server --watch mockApi/db.json",
+    "start:api": "json-server --watch mockApi/db.json",
     "test": "jest --watch",
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
@@ -37,6 +37,7 @@
     "eslint-loader": "^3.0.2",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.16.0",
+    "fetch-mock": "^8.0.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",

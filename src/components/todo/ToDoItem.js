@@ -1,16 +1,26 @@
 import React, { useState } from "react";
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import Checkbox from "./../common/Checkbox";
 import Group from "../common/Group";
 import TrashIcon from "../common/icons/TrashIcon";
 
-const ToDoItem = ({ todoText, ...props }) => {
+const ToDoItem = ({ description, id, isCompleted, categoryId, ...props }) => {
   const [showDeleteBtn, setShowDeleteBtn] = useState(false);
-  const [checkToDoItem, setCheckToDoItem] = useState(false);
+
   const handleCheckboxChange = event => {
-    setCheckToDoItem(event.target.checked);
+    props.onToggle({
+      isCompleted: event.target.checked,
+      id: event.target.id,
+      description,
+      categoryId
+    });
   };
+
+  const handleDelete = event => {
+    props.onDelete(event.target.parentNode.attributes.datatodoid.value);
+  };
+
   return (
     <Group
       onMouseEnter={() => {
@@ -22,17 +32,30 @@ const ToDoItem = ({ todoText, ...props }) => {
       style={{ justifyContent: "space-between" }}
     >
       <Checkbox
-        checked={checkToDoItem}
+        checked={isCompleted}
         onChange={handleCheckboxChange}
-        checkBoxLabel={todoText}
+        checkBoxLabel={description}
+        id={id}
       />
-      {showDeleteBtn && <TrashIcon fill={props.theme.primary} />}
+      {showDeleteBtn && (
+        <TrashIcon
+          todoId={id}
+          fill={props.theme.primary}
+          onClick={handleDelete}
+        />
+      )}
     </Group>
   );
 };
 
 ToDoItem.propTypes = {
-  todoText: PropType.string
+  description: PropTypes.string,
+  id: PropTypes.string,
+  isCompleted: PropTypes.bool,
+  categoryId: PropTypes.string,
+  onToggle: PropTypes.func,
+  onDelete: PropTypes.func,
+  theme: PropTypes.object
 };
 
 export default withTheme(ToDoItem);
